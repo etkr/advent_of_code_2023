@@ -1,4 +1,4 @@
-use std::cmp::{max, min};
+use std::cmp::min;
 
 fn find_numeric_chars(str: &str) -> Vec<i32> {
     str.chars()
@@ -14,7 +14,7 @@ fn add_first_last_digit(vec: &[i32]) -> i32 {
     result.parse().expect("Cant parse int")
 }
 
-pub fn find_calibration_value(lines: &[String]) -> i32 {
+pub fn find_calibration_value(lines: &[&str]) -> i32 {
     lines
         .iter()
         .map(|s| find_numeric_chars(s))
@@ -61,7 +61,7 @@ pub fn find_digit_with_str(str: &str) -> Vec<i32> {
     results
 }
 
-pub fn find_calibration_value_2(lines: &[String]) -> i32 {
+pub fn find_calibration_value_2(lines: &[&str]) -> i32 {
     lines
         .iter()
         .map(|s| find_digit_with_str(s))
