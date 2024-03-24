@@ -1,6 +1,19 @@
-use std::cmp::PartialEq;
+use core::str;
+use std::{cmp::PartialEq, collections::HashMap};
 
-use super::round::Round;
+use super::{color::Color, round::Round};
+
+pub struct Bag {
+    red: i32,
+    blue: i32,
+    green: i32,
+}
+
+impl Bag {
+    pub fn power(&self) -> i32 {
+        self.red * self.green * self.blue
+    }
+}
 
 #[derive(Debug, PartialEq)]
 pub struct Game {
@@ -21,7 +34,7 @@ impl Game {
         Game::new(id, rounds)
     }
 
-    pub fn parse_vec(lines: &[&str]) -> Vec<Game> {
+    pub fn from_str(lines: &[&str]) -> Vec<Game> {
         lines.iter().map(|line| Game::parse(line)).collect()
     }
 
@@ -34,6 +47,33 @@ impl Game {
             .iter()
             .filter(|game| game.is_possible())
             .map(|game| game.id)
+            .sum()
+    }
+
+    fn minimun_needed_cubes(&self) -> Bag {
+        let mut dict = HashMap::from([(Color::Red, 0), (Color::Green, 0), (Color::Blue, 0)]);
+
+        for round in &self.rounds {
+            for draw in &round.draw {
+                let color = draw.color;
+                let quantity = draw.quantity;
+                if dict[&color] < quantity {
+                    dict.insert(color, quantity);
+                }
+            }
+        }
+
+        Bag {
+            red: dict[&Color::Red],
+            blue: dict[&Color::Blue],
+            green: dict[&Color::Green],
+        }
+    }
+
+    pub fn sum_of_minimun_needed_cubes(games: &[Game]) -> i32 {
+        games
+            .iter()
+            .map(|game| game.minimun_needed_cubes().power())
             .sum()
     }
 }

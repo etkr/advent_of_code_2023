@@ -2,8 +2,8 @@ use super::color::Color;
 
 #[derive(PartialEq, Debug)]
 pub struct Draw {
-    quantity: i32,
-    color: Color,
+    pub quantity: i32,
+    pub color: Color,
 }
 
 impl Draw {

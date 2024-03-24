@@ -2,7 +2,7 @@ use super::draw::Draw;
 
 #[derive(Debug, PartialEq)]
 pub struct Round {
-     draw: Vec<Draw>,
+    pub draw: Vec<Draw>,
 }
 
 impl Round {

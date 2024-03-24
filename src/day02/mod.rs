@@ -1,10 +1,7 @@
-mod game;
-mod draw;
-mod round;
 mod color;
+mod draw;
+mod game;
+mod round;
 
 #[cfg(test)]
 mod test;
-
-
-
