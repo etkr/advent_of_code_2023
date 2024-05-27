@@ -70,3 +70,5 @@ fn test_minimum_needed_cubes_real() {
     let sum_of_minimun_needed_cubes = Game::sum_of_minimun_needed_cubes(&games);
     assert_eq!(77021, sum_of_minimun_needed_cubes)
 }
+
+
